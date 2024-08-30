@@ -1,0 +1,37 @@
+SQL Server triggers are special stored procedures that are executed automatically in response to the database object
+,database, and server events.SQL Server provides three type of triggers:
+و هو كود بقدر انفذه اوتوماتيك قبل او بعد حدوث حدث معين
+
+.Data manipulation language (DML) triggers which are invoked automatically in response
+ to INSERT, UPDATE, and DELETE events against tables.
+
+.Data definition language (DDL) triggers which fire in response to CREATE, ALTER,
+ and DROP statements. DDL triggers also fire in response to some system stored procedures
+ that perform DDL-like operations.
+
+.Logon triggers which fire in response to LOGON events
+
+“Virtual” tables for triggers: INSERTED and DELETED
+SQL Server provides two virtual tables that are available specifically for triggers called INSERTED 
+and DELETED tables. SQL Server uses these tables to capture the data of the modified row before and after 
+the event occurs.
+
+--create trigger after events
+
+CREATE TRIGGER [schema_name.]trigger_name
+ON table_name
+AFTER  {[INSERT],[UPDATE],[DELETE]}
+[NOT FOR REPLICATION]
+AS
+{sql_statements}
+
+
+What is an INSTEAD OF trigger
+An INSTEAD OF trigger is a trigger that allows you to skip an INSERT, DELETE, or UPDATE statement to a table or
+ a view and execute other statements defined in the trigger instead.
+
+CREATE TRIGGER [schema_name.] trigger_name
+ON {table_name | view_name }
+INSTEAD OF {[INSERT] [,] [UPDATE] [,] [DELETE] }
+AS
+{sql_statements}
